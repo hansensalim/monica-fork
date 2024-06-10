@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\InternalRequestMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::apiResource('statistics', 'Statistics\\ApiStatisticsController', ['only' => ['index']])->name('index', 'api.statistics');
@@ -7,6 +8,13 @@ Route::apiResource('statistics', 'Statistics\\ApiStatisticsController', ['only' 
 Route::resource('compliance', 'Settings\\ApiComplianceController', ['only' => ['index', 'show']]);
 
 Route::resource('currencies', 'Settings\\ApiCurrencyController', ['only' => ['index', 'show']])->name('index', 'api.currencies');
+
+/**
+ * CUSTOM API
+ */
+Route::group(['middleware' => [InternalRequestMiddleware::class]], function () {
+    Route::post('/internal/account', 'Internal\ApiInternalController@createAccount');
+});
 
 Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/', 'ApiController@success')->name('api');

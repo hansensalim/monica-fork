@@ -13,6 +13,6 @@ class FakeUserTableSeeder extends Seeder
     public function run()
     {
         Account::createDefault('John', 'Doe', 'admin@admin.com', 'admin0', null, 'en');
-        Account::createDefault('Blank', 'State', 'blank@blank.com', 'blank0', null, 'en');
+//        Account::createDefault('Blank', 'State', 'blank@blank.com', 'blank0', null, 'en');
     }
 }

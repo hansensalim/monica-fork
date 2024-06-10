@@ -96,6 +96,26 @@ $db = [
             ]) : [],
         ],
 
+        'session' => [
+            'driver' => 'mysql',
+            'url' => env('SESSION_DATABASE_URL'),
+            'host' => env('SESSION_DB_HOST', '127.0.0.1'),
+            'port' => env('SESSION_DB_PORT', '3306'),
+            'database' => env('SESSION_DB_DATABASE', 'forge'),
+            'username' => env('SESSION_DB_USERNAME', 'forge'),
+            'password' => env('SESSION_DB_PASSWORD', ''),
+            'unix_socket' => env('SESSION_DB_UNIX_SOCKET', ''),
+            'charset' => env('SESSION_DB_USE_UTF8MB4', true) ? 'utf8mb4' : 'utf8',
+            'collation' => env('SESSION_DB_USE_UTF8MB4', true) ? 'utf8mb4_unicode_ci' : 'utf8_unicode_ci',
+            'prefix' => env('SESSION_DB_PREFIX', ''),
+            'prefix_indexes' => true,
+            'strict' => false,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
         'testing' => [
             'driver' => env('DB_TEST_DRIVER', 'mysql'),
             'host' => env('DB_TEST_HOST'),
