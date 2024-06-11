@@ -24,6 +24,7 @@ class ApiInternalController extends ApiController
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
+            'internal_user_id' => 'required|integer',
             'password' => ['required'],
         ]);
 
@@ -34,8 +35,9 @@ class ApiInternalController extends ApiController
             Str::random(40), // temporary password
         );
 
-        $user = $account->users()->first();
-        $user->password = $request->get('password');
+        $user                   = $account->users()->first();
+        $user->internal_user_id = $request->get('internal_user_id');
+        $user->password         = $request->get('password');
         $user->save();
 
         return response()->json([
