@@ -16,7 +16,7 @@ class InternalRequestMiddleware
             abort(404);
         }
 
-        if($request->header('x-secret') != env('INTERNAL_X_SECRET')){
+        if($request->header('x-secret') != config('custom.internal_x_secret')){
             abort(404);
         }
 
